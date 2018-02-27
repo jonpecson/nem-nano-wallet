@@ -12,16 +12,106 @@ declare const $: any;
 declare const AmCharts: any;
 import '../../../../../node_modules/peity/jquery.peity.min.js';
 
+import {animate, style, transition, trigger} from '@angular/animations';
+
 @Component({
   selector: 'app-dashboard-ecommerce',
   templateUrl: './dashboard-ecommerce.component.html',
-  styleUrls: ['./dashboard-ecommerce.component.css']
+  styleUrls: ['./dashboard-ecommerce.component.css'],
+  animations: [
+    trigger('fadeInOutTranslate', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('400ms ease-in-out', style({opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({transform: 'translate(0)'}),
+        animate('400ms ease-in-out', style({opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class DashboardEcommerceComponent implements OnInit {
   gTargetHTML: string;
   gGap: string;
 
-  constructor() { }
+  totalValueGraphData1 = buildChartJS('#fff', [45, 25, 35, 20, 45, 20, 40, 10, 30, 45], '#3a73f1', 'transparent');
+  totalValueGraphData2 = buildChartJS('#fff', [10, 25, 35, 20, 10, 20, 15, 45, 15, 10], '#e55571', 'transparent');
+  totalValueGraphOption = buildChartOption();
+
+  constructor() {
+    AmCharts.makeChart('statistics-chart', {
+      type: 'serial',
+      marginTop: 0,
+      hideCredits: true,
+      marginRight: 0,
+      dataProvider: [{
+        year: 'Jan',
+        value: 0.98
+      }, {
+        year: 'Feb',
+        value: 1.87
+      }, {
+        year: 'Mar',
+        value: 0.97
+      }, {
+        year: 'Apr',
+        value: 1.64
+      }, {
+        year: 'May',
+        value: 0.4
+      }, {
+        year: 'Jun',
+        value: 2.9
+      }, {
+        year: 'Jul',
+        value: 5.2
+      }, {
+        year: 'Aug',
+        value: 0.77
+      }, {
+        year: 'Sap',
+        value: 3.1
+      }],
+      valueAxes: [{
+        axisAlpha: 0,
+        dashLength: 6,
+        gridAlpha: 0.1,
+        position: 'left'
+      }],
+      graphs: [{
+        id: 'g1',
+        bullet: 'round',
+        bulletSize: 9,
+        lineColor: '#4680ff',
+        lineThickness: 2,
+        negativeLineColor: '#4680ff',
+        type: 'smoothedLine',
+        valueField: 'value'
+      }],
+      chartCursor: {
+        cursorAlpha: 0,
+        valueLineEnabled: false,
+        valueLineBalloonEnabled: true,
+        valueLineAlpha: false,
+        color: '#fff',
+        cursorColor: '#FC6180',
+        fullWidth: true
+      },
+      categoryField: 'year',
+      categoryAxis: {
+        gridAlpha: 0,
+        axisAlpha: 0,
+        fillAlpha: 1,
+        fillColor: '#FAFAFA',
+        minorGridAlpha: 0,
+        minorGridEnabled: true
+      },
+      'export': {
+        enabled: true
+      }
+    });
+   }
 
   ngOnInit() {
     $('span#amount-processed').peity('line', {
@@ -316,4 +406,91 @@ function getRandomData() {
     res.push([i, data[i]]);
   }
   return res;
+}
+
+function buildChartJS(a, b, f, c) {
+  if (f == null) {
+    f = 'rgba(0,0,0,0)';
+  }
+  return {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
+    datasets: [{
+      label: '',
+      borderColor: a,
+      borderWidth: 2,
+      hitRadius: 30,
+      pointHoverRadius: 4,
+      pointBorderWidth: 50,
+      pointHoverBorderWidth: 12,
+      pointBackgroundColor: c,
+      pointBorderColor: 'transparent',
+      pointHoverBackgroundColor: a,
+      pointHoverBorderColor: 'rgba(0,0,0,0.5)',
+      fill: true,
+      backgroundColor: f,
+      data: b,
+    }]
+  };
+}
+
+function buildChartOption() {
+  return {
+    title: {
+      display: false
+    },
+    tooltips: {
+      enabled: true,
+      intersect: false,
+      mode: 'nearest',
+      xPadding: 10,
+      yPadding: 10,
+      caretPadding: 10
+    },
+    legend: {
+      display: false,
+      labels: {
+        usePointStyle: false
+      }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    hover: {
+      mode: 'index'
+    },
+    scales: {
+      xAxes: [{
+        display: false,
+        gridLines: false,
+        scaleLabel: {
+          display: true,
+          labelString: 'Month'
+        }
+      }],
+      yAxes: [{
+        display: false,
+        gridLines: false,
+        scaleLabel: {
+          display: true,
+          labelString: 'Value'
+        },
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    elements: {
+      point: {
+        radius: 4,
+        borderWidth: 12
+      }
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 5,
+        bottom: 0
+      }
+    }
+  };
 }

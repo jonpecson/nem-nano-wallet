@@ -58,7 +58,7 @@ export class DashboardDefaultComponent implements OnInit {
         year: 'Aug',
         value: 0.77
       }, {
-        year: 'Sap',
+        year: 'Sep',
         value: 3.1
       }],
       valueAxes: [{
