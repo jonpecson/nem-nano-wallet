@@ -109,17 +109,20 @@ export class AdminComponent implements OnInit {
     this.verticalPlacement = 'left';
     this.verticalLayout = 'wide';
     this.deviceType = 'desktop';
-    this.verticalNavType = 'expanded';
+    this.verticalNavType = 'offcanvas';
     this.verticalEffect = 'shrink';
     this.pcodedHeaderPosition = 'fixed';
     this.pcodedSidebarPosition = 'fixed';
-    this.headerTheme = 'theme1';
-    this.logoTheme = 'theme1';
+    this.headerTheme = 'theme6';
+    this.logoTheme = 'theme6';
+
+    // dark
+    // document.querySelector('body').classList.add('dark');
 
     this.toggleOn = true;
 
     this.headerFixedMargin = '80px';
-    this.navBarTheme = 'themelight1';
+    this.navBarTheme = 'theme1';
     this.activeItemTheme = 'theme4';
 
     this.isCollapsedMobile = 'no-block';
@@ -130,7 +133,7 @@ export class AdminComponent implements OnInit {
     this.chatInnerToggle = 'off';
     this.chatInnerToggleInverse = 'on';
 
-    this.menuTitleTheme = 'theme5';
+    this.menuTitleTheme = 'theme6';
     this.itemBorder = true;
     this.itemBorderStyle = 'none';
     this.subItemBorder = true;
@@ -143,6 +146,8 @@ export class AdminComponent implements OnInit {
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributes(this.windowWidth);
+
+
   }
 
   ngOnInit() {

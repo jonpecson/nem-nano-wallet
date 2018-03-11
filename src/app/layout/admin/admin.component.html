@@ -27,7 +27,7 @@
 
         <div class="navbar-container">
           <div>
-            <ul class="nav-left">
+            <!-- <ul class="nav-left">
               <li>
                 <div class="sidebar_toggle"><a href="javascript:;" (click)="toggleOpened()"><i class="ti-menu f-18"></i></a></div>
               </li>
@@ -154,7 +154,7 @@
                   </li>
                 </ul>
               </li>
-            </ul>
+            </ul> -->
             <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
               <li class="header-notification lng-dropdown">
                 <a href="javascript:;" id="dropdown-active-item">
@@ -225,16 +225,16 @@
                   </li>
                 </ul>
               </li>
-              <li class="header-notification">
+              <!-- <li class="header-notification">
                 <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
                   <i class="ti-comments"></i>
                   <span class="badge bg-c-green"></span>
                 </a>
-              </li>
+              </li> -->
               <li class="user-profile header-notification">
                 <a [routerLink]="['/']">
                   <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                  <span>John Doe</span>
+                  <span>John Pecson</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
@@ -272,7 +272,7 @@
     </nav>
 
     <!-- rightbar chat start -->
-    <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
+    <!-- <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
       <div class="had-container">
         <div class="card card_main p-fixed users-main">
           <div class="user-box">
@@ -344,9 +344,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div [@slideOnOff]="verticalPlacement === 'right' ? chatInnerToggleInverse : chatInnerToggle" class="card card_main showChat_inner">
+    <!-- <div [@slideOnOff]="verticalPlacement === 'right' ? chatInnerToggleInverse : chatInnerToggle" class="card card_main showChat_inner">
       <div class="media chat-inner-header">
         <a class="back_chatBox" (click)="toggleChatInner()">
           <i class="icofont icofont-rounded-left"></i> Josephin Doe
@@ -386,7 +386,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- right-bar inner chat end -->
 
     <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
